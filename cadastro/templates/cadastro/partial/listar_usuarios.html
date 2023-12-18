@@ -1,0 +1,51 @@
+{% extends "cadastro/global/index.html" %}
+
+{% load static %}
+
+{% block title %}Listar Usuarios{% endblock title %}
+
+{% block content %}
+
+<link href="{% static "css/style_lista.css" %}" rel="stylesheet">
+
+<h2>Lista de Usuarios</h2>
+<table border="1">
+    <tr>
+        <td>
+        <form method="get" action="/pesquisa_usuario">
+            {% csrf_token %}
+            <input type="text" id="nome_pesquisado" name="nome_pesquisado" placeholder="Pesquisar nome">
+            <input type="submit" value="buscar">
+        </form>
+        </td>
+         <td>
+        <form method="get" action="/pesquisa_cpf">
+            {% csrf_token %}
+            <input type="text" id="CPF_pesquisado" name="CPF_pesquisado" placeholder="Pesquisar CPF">
+            <input type="submit" value="buscar">
+        </form>
+        </td>
+    </tr>
+    <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Operações:</th>
+    </tr>
+    {% for usuario in usuarios %}
+    <tr>
+        <td>{{ usuario.nome }}</td>
+        <td>{{ usuario.cpf }}</td>
+        <td>{{ usuario.email }}</td>
+        <td>{{ usuario.telefone }}</td>
+        <td>
+            <a href="/atualizar_registro?pk={{usuario.pk}}">Editar</a>
+            <a href="/deletar_registro?pk={{usuario.pk}}" >Deletar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+{% endblock content %}
