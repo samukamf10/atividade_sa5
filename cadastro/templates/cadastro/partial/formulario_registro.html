@@ -4,11 +4,9 @@
 
 {% block title %}Listar Usuarios{% endblock title %}
 
-
 {% block content %}
 
-
-<link href="{% static "css/style_registro.css" %}" rel="stylesheet">
+<link href="{% static "css/styles_registro.css" %}" rel="stylesheet">
 
 <form method="POST">
     {% csrf_token %}
@@ -38,6 +36,7 @@
         {{ form.matriculado.label_tag }}
         {{ form.matriculado }}
     </div>
-    <input type="submit" value="criar_usuario" />
+    <input type="submit" value="registrar_usuario" />
 </form>
+
 {% endblock content %}
