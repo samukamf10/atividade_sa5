@@ -9,9 +9,9 @@ def index(request):
 
 def listar(request):
     usuario = Usuario.objects.all()
-    return render(request, 'cadastro/partial/listar_usuarios.html', {'usuarios': usuarios})
+    return render(request, 'cadastro/partial/listar_usuarios.html', {'usuarios': usuario})
 
-def criar_usuario(request):
+def registrar_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
         if form.is_valid():
